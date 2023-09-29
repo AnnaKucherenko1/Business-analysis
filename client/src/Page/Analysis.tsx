@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBalance } from './redux/balanceSlice';
+import { setBalance } from '../redux/balanceSlice';
 import axios from 'axios';
+import MonthlyChart from '../components/MonthlyChart/MonthlyChart';
+import DataTable from '../components/DataTable/DataTable';
+import './Analysis.css'
 
 const Analysis = () => {
   const dispatch = useDispatch();
@@ -22,8 +25,11 @@ const Analysis = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      hellooooo
+    <div className='wrapper'>
+      <div className='charts'>
+        <MonthlyChart />
+        <DataTable />
+      </div>
     </div>
   );
 };
