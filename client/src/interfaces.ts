@@ -1,20 +1,23 @@
+export interface StateInterface {
+  data: StateDataInterface;
+}
 
 export interface BalanceInterface {
   costsAmount: number;
   costsTax: number;
-  month: Date;
+  month: string;
   salesAmount: number;
   salesTax: number;
 }
-export interface State {
+export interface StateDataInterface {
   balance: any[]
   costsExpired: []
   costsGrouped: {}
   costsTotal: number
   costsTotalDocs: number
-  from: Date
+  from: string
   salesGrouped: {}
   salesTotal: number
   salesTotalDocs: number
-  to: Date
+  to: string
 }

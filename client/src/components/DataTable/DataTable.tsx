@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { State } from '../../interfaces';
+import { StateDataInterface, StateInterface } from '../../interfaces';
 import './DataTable.css';
 
 const formatNumber = (number: number) => {
@@ -10,8 +10,8 @@ const formatNumber = (number: number) => {
 };
 
 const DataTable = () => {
-  const balanceData = useSelector((state: State) => state.balance);
-  const tableData = balanceData.map(item => ({
+  const balanceData = useSelector((state: StateInterface) => state.data.balance);
+  const tableData = balanceData.map((item: any) => ({
     ...item,
     difference: item.salesAmount - item.costsAmount,
     salesAmountFormatted: formatNumber(item.salesAmount),
@@ -19,9 +19,9 @@ const DataTable = () => {
     differenceFormatted: formatNumber(item.salesAmount - item.costsAmount),
   }));
 
-  const totalSales = formatNumber(tableData.reduce((total, item) => total + parseFloat(item.salesAmount), 0));
-  const totalCosts = formatNumber(tableData.reduce((total, item) => total + parseFloat(item.costsAmount), 0));
-  const totalDifference = formatNumber(tableData.reduce((total, item) => total + (item.salesAmount - item.costsAmount), 0));
+  const totalSales = formatNumber(tableData.reduce((total: any, item: any) => total + parseFloat(item.salesAmount), 0));
+  const totalCosts = formatNumber(tableData.reduce((total: any, item: any) => total + parseFloat(item.costsAmount), 0));
+  const totalDifference = formatNumber(tableData.reduce((total: any, item: any) => total + (item.salesAmount - item.costsAmount), 0));
 
   return (
     <div className="container">
@@ -35,7 +35,7 @@ const DataTable = () => {
           </tr>
         </thead>
         <tbody>
-          {tableData.map(item => (
+          {tableData.map((item: any) => (
             <tr key={item.month}>
               <td>{item.month}</td>
               <td style={{ color: 'green' }}>{item.salesAmountFormatted}</td>
