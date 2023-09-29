@@ -11,12 +11,37 @@ const MonthlyChart = () => {
   const costs = balanceData.map((item: BalanceInterface) => item.costsAmount);
   const sales = balanceData.map((item: BalanceInterface) => item.salesAmount);
 
+  const formatDate = (inputDates: string[]) => {
+    const months = [
+      "január",
+      "február",
+      "marec",
+      "apríl",
+      "máj",
+      "jún",
+      "júl",
+      "august",
+      "september",
+      "október",
+      "november",
+      "december",
+    ];
+    const formattedDates = inputDates.map((inputDate) => {
+      const parts = inputDate.split("T")[0].split("-");
+      const year = parts[0].slice(-2);
+      const month = parseInt(parts[1], 10) - 1;
+      return `${months[month]} ${year}`;
+    });
+
+    return formattedDates;
+  };
+
   const config = {
     title: {
       text: 'Monthly Costs and Profit',
     },
     xAxis: {
-      categories: months,
+      categories: formatDate(months),
     },
     yAxis: {
       title: {

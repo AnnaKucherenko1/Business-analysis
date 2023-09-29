@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { StateDataInterface, StateInterface } from '../../interfaces';
 import './DataTable.css';
+import { formatDate } from '../../formatDate';
 
 const formatNumber = (number: number) => {
   const parts = number.toFixed(2).split('.');
@@ -10,6 +11,7 @@ const formatNumber = (number: number) => {
 };
 
 const DataTable = () => {
+
   const balanceData = useSelector((state: StateInterface) => state.data.balance);
   const tableData = balanceData.map((item: any) => ({
     ...item,
@@ -37,7 +39,7 @@ const DataTable = () => {
         <tbody>
           {tableData.map((item: any) => (
             <tr key={item.month}>
-              <td>{item.month}</td>
+              <td>{formatDate(item.month)}</td>
               <td style={{ color: 'green' }}>{item.salesAmountFormatted}</td>
               <td style={{ color: 'red' }}>{item.costsAmountFormatted}</td>
               <td>{item.differenceFormatted}</td>

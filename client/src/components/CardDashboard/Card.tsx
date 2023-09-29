@@ -6,7 +6,7 @@ import { StateInterface } from '../../interfaces';
 import './CardDashboard.css'
 
 
-const Card = ({ data, totalDocs, sum }: any) => {
+const Card = ({ data, totalDocs, sum, title }: any) => {
 
   const chartOptions = {
     chart: {
@@ -15,19 +15,11 @@ const Card = ({ data, totalDocs, sum }: any) => {
     },
     title: null,
     plotOptions: {
-      // column: {
-      //   // dataLabels: {
-      //   //   enabled: false, 
-      //   // },
-      //   //   tooltip: {
-      //   //     enabled: false, 
-      //   // },
-      // },
       column: {
         pointPadding: 0,
         borderWidth: 0,
         groupPadding: 0,
-        maxPointWidth: 0,
+        pointWidth: 3,
       }
     },
     legend: {
@@ -51,17 +43,11 @@ const Card = ({ data, totalDocs, sum }: any) => {
         name: 'Costs',
         data: data.costs,
         color: 'red',
-        // pointWidth: 5,
-        // pointPadding: 0, 
-        // groupPadding: 0,
       },
       {
         name: 'Sales',
         data: data.sales,
         color: 'green',
-        // pointWidth: 5,
-        // pointPadding: 0, 
-        // groupPadding: 0, 
       },
     ],
   };
@@ -69,16 +55,14 @@ const Card = ({ data, totalDocs, sum }: any) => {
   return (
     <div className="chartCard">
       <div className="title">
-        what
+        {title}
       </div>
       <div className='middle-card'>
         <div className="card-info">
-          <p> {sum}</p>
+          <p> {sum}K</p>
           <p>{totalDocs} dokladov</p>
         </div>
-        {/* <div className="chart"> */}
-        <HighchartsReact className="highcharts" highcharts={Highcharts} options={chartOptions} />
-        {/* </div> */}
+        <HighchartsReact highcharts={Highcharts} options={chartOptions} />
       </div>
     </div>
   );
