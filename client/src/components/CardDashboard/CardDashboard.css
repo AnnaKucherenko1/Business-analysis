@@ -1,0 +1,43 @@
+.highcharts {
+  max-width: 100px;
+  max-height: 88%;
+  background-color: white;
+}
+.chartCard {
+  display: flex;
+  width: 100%;
+  /* align-items: center;*/
+  flex-direction: column;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.title {
+  text-align: start;
+  height: 20%; width: 100%;
+}
+
+.card-info {
+  width: 30%;
+  /* text-align: left; */
+}
+
+.dashboard {
+  background-color: blue;
+  width: 100%;
+  display: flex; 
+  flex-direction: row;
+  justify-content: center;
+  gap: 3px;
+  align-items: center;
+}
+.middle-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+}
+.tr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

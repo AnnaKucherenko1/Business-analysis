@@ -1,0 +1,10 @@
+.wrapper {
+  width: 50%;
+}
+
+.charts {
+  display: flex;
+  flex-direction: row;
+  height: 40%;
+  /* background-color: red; */
+}

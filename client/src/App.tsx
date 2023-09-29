@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
-import Analysis from './Analysis';
+import Analysis from './Page/Analysis';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Analysis />
-      </header>
+      <Analysis />
     </div>
   );
 }
