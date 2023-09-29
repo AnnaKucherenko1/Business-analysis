@@ -6,6 +6,7 @@ import MonthlyChart from '../components/MonthlyChart/MonthlyChart';
 import DataTable from '../components/DataTable/DataTable';
 import './Analysis.css'
 import Pie from '../components/Pie/Pie';
+import Dashboard from '../components/CardDashboard/Dashboard';
 
 const Analysis = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ const Analysis = () => {
 
   return (
     <div className='wrapper'>
+      <Dashboard />
       <div className='charts'>
         <MonthlyChart />
         <DataTable />
