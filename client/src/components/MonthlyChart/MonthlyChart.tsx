@@ -30,7 +30,7 @@ const MonthlyChart = () => {
       const parts = inputDate.split("T")[0].split("-");
       const year = parts[0].slice(-2);
       const month = parseInt(parts[1], 10) - 1;
-      return `${months[month]} ${year}`;
+      return `${months[month + 1]} ${year}`;
     });
 
     return formattedDates;
@@ -61,10 +61,6 @@ const MonthlyChart = () => {
       },
     ],
   };
-
-  useEffect(() => {
-    //TODO: add logic here
-  }, [balanceData]);
 
   return (
     <div className='container'>

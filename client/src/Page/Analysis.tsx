@@ -24,6 +24,9 @@ const Analysis = () => {
 
     getData();
   }, [dispatch]);
+  const closeModal = () => {
+    console.log('kkk')
+  }
 
   return (
     <div className='wrapper'>
@@ -32,7 +35,8 @@ const Analysis = () => {
         <MonthlyChart />
         <DataTable />
       </div>
-      <Pie />
+      {/* <Pie /> */}
+
     </div>
   );
 };
