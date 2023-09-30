@@ -47,16 +47,16 @@ const Dashboard = () => {
         </div>
         <div className='middle-card'>
           <div className="tax-table">
-            <table >
+            <table className="table-sm table-borderless p-0" style={{ fontSize: '12px', borderSpacing: '0' }}>
               <thead>
-                <tr className='tr'>
-                  <th>Mesiac</th>
-                  <th>Suma</th>
+                <tr>
+                  <th className="px-4">Mesiac</th>
+                  <th className="px-4">Suma</th>
                 </tr>
               </thead>
               <tbody>
                 {lastItems.map((item) => (
-                  <tr key={item.month} className='tr'>
+                  <tr key={item.month}>
                     <td>{formatDate(item.month)}</td>
                     <td>{(item.salesTax - item.costsTax).toFixed(2)}</td>
                   </tr>
