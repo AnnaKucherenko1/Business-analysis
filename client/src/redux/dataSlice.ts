@@ -15,8 +15,15 @@ const dataSlice = createSlice({
       console.log(action.payload, 'action pay')
       state.balance.push(action.payload); 
     },
+    updateRow: (state, action) => {
+      const rowIndex = state.balance.findIndex((row) => row.month === action.payload.month);
+
+      if (rowIndex !== -1) {
+        state.balance[rowIndex] = { ...state.balance[rowIndex], ...action.payload };
+      }
+    },
   },
 });
 
-export const { setData, deleteItem, addRowToTable } = dataSlice.actions;
+export const { setData, deleteItem, addRowToTable, updateRow } = dataSlice.actions;
 export default dataSlice.reducer;

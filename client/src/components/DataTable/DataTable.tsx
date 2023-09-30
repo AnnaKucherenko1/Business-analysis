@@ -3,18 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BalanceInterface, StateDataInterface, StateInterface } from '../../interfaces';
 import './DataTable.css';
 import { formatDate } from '../../formatDate';
-import { deleteItem } from '../../redux/dataSlice';
+import { deleteItem, updateRow } from '../../redux/dataSlice';
 import AddRowModal from '../Modal/AddRowModal';
+import EditRowModal from '../Modal/EditRowModal';
 
-const formatNumber = (number: number) => {
-  const parts = number.toFixed(2).split('.');
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  return `${parts.join(',')} E`;
-};
 
 const DataTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const balanceData = useSelector((state: StateInterface) => state.data.balance);
+  const dispatch = useDispatch();
+  const [selectedRow, setSelectedRow] = useState(null);
+  const formatNumber = (number: number) => {
+    const parts = number.toFixed(2).split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return `${parts.join(',')} E`;
+  };
   const tableData = balanceData.map((item: any) => ({
     ...item,
     difference: item.salesAmount - item.costsAmount,
@@ -22,16 +26,12 @@ const DataTable = () => {
     costsAmountFormatted: formatNumber(item.costsAmount),
     differenceFormatted: formatNumber(item.salesAmount - item.costsAmount),
   }));
-  const dispatch = useDispatch();
   const totalSales = formatNumber(tableData.reduce((total: number, item: BalanceInterface) => total + item.salesAmount, 0));
   const totalCosts = formatNumber(tableData.reduce((total: number, item: BalanceInterface) => total + item.costsAmount, 0));
   const totalDifference = formatNumber(tableData.reduce((total: any, item: any) => total + (item.salesAmount - item.costsAmount), 0));
-
-  const [selectedRow, setSelectedRow] = useState(null);
-
   const handleEditClick = (item: any) => {
     setSelectedRow(item);
-    // Open your edit modal or form here
+    setIsEditModalOpen(true);
   };
 
   const handleDeleteClick = (item: any) => {
@@ -47,15 +47,14 @@ const DataTable = () => {
 
   return (
     <>
-      <div className="container">
-        <button type="button" className="btn btn-primary" onClick={openModal} data-toggle="modal" data-target="#tableModal">Add to Table</button>
-        <table className="table table-sm table-borderless" style={{ fontSize: '9px', borderSpacing: '0' }}>
+      <div className="container-wrapper">
+        <table className="table table-borderless custom-table">
           <thead>
             <tr>
-              <th>Mesiac</th>
-              <th>Tržby</th>
-              <th>Náklady</th>
-              <th>Bilancia</th>
+              <th scope="col">Mesiac</th>
+              <th scope="col">Tržby</th>
+              <th scope="col">Náklady</th>
+              <th scope="col">Bilancia</th>
             </tr>
           </thead>
           <tbody>
@@ -91,8 +90,20 @@ const DataTable = () => {
             </tr>
           </tfoot>
         </table>
+        <button type="button" className="btn btn-primary" onClick={openModal} data-toggle="modal" data-target="#tableModal">Add to Table</button>
       </div>
       {isModalOpen && <AddRowModal show={isModalOpen} onHide={closeModal} />}
+      {isEditModalOpen && (
+        <EditRowModal
+          show={isEditModalOpen}
+          onHide={() => setIsEditModalOpen(false)}
+          selectedRow={selectedRow}
+          onSave={(editedRowData: any) => {
+            dispatch(updateRow(editedRowData));
+            setIsEditModalOpen(false);
+          }}
+        />
+      )}
     </>
   );
 };

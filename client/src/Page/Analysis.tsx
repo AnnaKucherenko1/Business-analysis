@@ -24,19 +24,16 @@ const Analysis = () => {
 
     getData();
   }, [dispatch]);
-  const closeModal = () => {
-    console.log('kkk')
-  }
 
   return (
     <div className='wrapper'>
+      <h5 className='pageTitle'>Biznis analyza</h5>
       <Dashboard />
       <div className='charts'>
         <MonthlyChart />
         <DataTable />
       </div>
-      {/* <Pie /> */}
-
+      <Pie />
     </div>
   );
 };

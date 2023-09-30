@@ -30,7 +30,7 @@ const MonthlyChart = () => {
       const parts = inputDate.split("T")[0].split("-");
       const year = parts[0].slice(-2);
       const month = parseInt(parts[1], 10) - 1;
-      return `${months[month + 1]} ${year}`;
+      return `${months[month]} ${year}`;
     });
 
     return formattedDates;
@@ -38,10 +38,18 @@ const MonthlyChart = () => {
 
   const config = {
     title: {
-      text: 'Monthly Costs and Profit',
+      text: 'Mesačné tržby a náklady',
+      align: 'left',
     },
     xAxis: {
-      categories: formatDate(months),
+      categories: formatDate(months).map((month, index) => (index % 3 === 0 ? month : '')),
+      labels: {
+        rotation: 0,
+        style: {
+          fontSize: '6px',
+        },
+        useHTML: true,
+      }
     },
     yAxis: {
       title: {
@@ -63,9 +71,9 @@ const MonthlyChart = () => {
   };
 
   return (
-    <div className='container'>
-      <HighchartsReact highcharts={Highcharts} options={config} />
-    </div>
+    <div className='monthly-container' >
+      <HighchartsReact highcharts={Highcharts} containerProps={{ className: "test" }} options={config} />
+    </div >
   )
 };
 

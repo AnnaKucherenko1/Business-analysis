@@ -32,7 +32,7 @@ const Pie = () => {
       enabled: true,
       layout: 'vertical',
       align: 'left',
-      maxHeight: 300
+      maxHeight: 150
     },
     plotOptions: {
       pie: {
@@ -66,7 +66,7 @@ const Pie = () => {
       enabled: true,
       layout: 'vertical',
       align: 'left',
-      maxHeight: 300
+      maxHeight: 150
     },
     plotOptions: {
       pie: {
@@ -79,10 +79,10 @@ const Pie = () => {
   return (
     <div className="pie-charts">
       <div className="pie-chart">
-        <HighchartsReact highcharts={Highcharts} options={salesOptions} />
+        <HighchartsReact highcharts={Highcharts} options={salesOptions} containerProps={{ className: "pie" }} />
       </div>
       <div className="pie-chart">
-        <HighchartsReact highcharts={Highcharts} options={costsOptions} />
+        <HighchartsReact highcharts={Highcharts} options={costsOptions} containerProps={{ className: "pie" }} />
       </div>
     </div>
   );

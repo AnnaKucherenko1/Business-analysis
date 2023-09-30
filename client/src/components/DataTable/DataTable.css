@@ -1,18 +1,21 @@
-.container {
-  width: 50%;
-  height: 400px;
+.container-wrapper {
+  width: 45%;
+  height: 100%;
+  border-radius: 10px;
+  border: 10px solid white;
 }
-/* .table-row-actions button {
-  display: none;
+.custom-table {
+  font-size: 10px;
+  padding: 10px;
 }
-
-.table-row:hover .table-row-actions button {
-  display: inline-block;
-} */
 .table-row {
   position: relative;
 }
-
+.table-wrapper {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
 .table-row-actions {
   position: absolute;
   top: 0;
