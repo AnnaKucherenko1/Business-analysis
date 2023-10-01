@@ -81,7 +81,7 @@ const CardDashboard = () => {
         title={'Náklady'}
         className={'naklady'}
       />
-      <Card style={{ width: '22.5%', height: '100%' }}>
+      <Card className='card-wrap'>
         <Card.Body>
           <Card.Title className='title-left'> Prehľad DPH </Card.Title>
           <Container>

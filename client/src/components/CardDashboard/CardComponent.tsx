@@ -68,7 +68,7 @@ const CardComponent = ({
   };
 
   return (
-    <Card style={{ width: '22.5%', height: '100%' }}>
+    <Card className='card-wrap'>
       <Card.Body>
         <Card.Title className='title-left'> {title} </Card.Title>
         <Container>

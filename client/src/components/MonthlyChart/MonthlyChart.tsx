@@ -5,6 +5,7 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { BalanceInterface, StateInterface } from '../../interfaces';
 import { formatDatesToMonth } from '../../common/utils';
+import { allMonths } from '../../common/constants';
 
 const MonthlyChart = () => {
   const balanceData = useSelector((state: StateInterface) => state.data.balance);
@@ -17,23 +18,28 @@ const MonthlyChart = () => {
   }, [balanceData]);
 
   const config = {
+    chart: {
+      type: 'areaspline',
+    },
     title: {
       text: 'Mesačné tržby a náklady',
       align: 'left',
     },
     xAxis: {
       categories: formatDatesToMonth(monthlyCostsSales.months).map((month, index) => (index % 3 === 0 ? month : '')),
+      gridLineWidth: allMonths.map((month, index) => (index % 3 === 0 ? 1 : 0)),
       labels: {
         rotation: 0,
         style: {
           fontSize: '7px',
         },
-      }
+      },
     },
     yAxis: {
       title: {
         text: null,
       },
+      tickInterval: 5000,
     },
     series: [
       {

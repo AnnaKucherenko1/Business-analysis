@@ -47,3 +47,8 @@
   z-index: 199;
   padding: 0;
 }
+@media (max-width: 768px) {
+  .container-wrapper {
+    width: 100%;
+  }
+}

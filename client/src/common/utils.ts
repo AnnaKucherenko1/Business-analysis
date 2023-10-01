@@ -1,3 +1,5 @@
+import { allMonths } from "./constants";
+
 // Formats date to "01/2022"
 export const formatDate = (inputDate: string) => {
   const date = new Date(inputDate);
@@ -22,21 +24,7 @@ export const formatNumber = (number: number) => {
 
 // Formats array of dates to array of formatted dates to: ["januar 22", ...]
 export const formatDatesToMonth = (inputDates: string[]) => {
-  const months = [
-    "január",
-    "február",
-    "marec",
-    "apríl",
-    "máj",
-    "jún",
-    "júl",
-    "august",
-    "september",
-    "október",
-    "november",
-    "december",
-  ];
-  
+
 return inputDates.map((inputDate) => {
   // Split the inputDate at "T" to get only the date part
   const datePart = inputDate.split("T")[0];
@@ -49,6 +37,6 @@ return inputDates.map((inputDate) => {
 
   // Parse the month part as an integer and subtract 1
   const month = parseInt(datePartsArray[1], 10) - 1;
-  return `${months[month]} ${year}`;
+  return `${allMonths[month]} ${year}`;
 });
 }
