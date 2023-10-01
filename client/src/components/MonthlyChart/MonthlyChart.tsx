@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import "./MonthlyChart.css"
 import { useSelector } from 'react-redux';
 import Highcharts from 'highcharts';
@@ -38,38 +38,43 @@ const MonthlyChart = () => {
 
   const config = {
     title: {
-      text: 'Monthly Costs and Profit',
+      text: 'Mesačné tržby a náklady',
+      align: 'left',
     },
     xAxis: {
-      categories: formatDate(months),
+      categories: formatDate(months).map((month, index) => (index % 3 === 0 ? month : '')),
+      labels: {
+        rotation: 0,
+        style: {
+          fontSize: '7px',
+        },
+      }
     },
     yAxis: {
       title: {
-        text: 'Amount',
+        text: null,
       },
     },
     series: [
       {
-        name: 'Costs',
+        name: 'Náklady',
         type: 'areaspline',
         data: costs,
+        color: '#FF4C4C',
       },
       {
-        name: 'Profit',
+        name: 'Tržby',
         type: 'areaspline',
         data: sales,
+        color: '#29AB87',
       },
     ],
   };
 
-  useEffect(() => {
-    //TODO: add logic here
-  }, [balanceData]);
-
   return (
-    <div className='container'>
-      <HighchartsReact highcharts={Highcharts} options={config} />
-    </div>
+    <div className='monthly-container' >
+      <HighchartsReact highcharts={Highcharts} containerProps={{ className: "monthly-chart" }} options={config} />
+    </div >
   )
 };
 

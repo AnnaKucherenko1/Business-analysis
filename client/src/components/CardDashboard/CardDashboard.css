@@ -1,18 +1,8 @@
 .highcharts {
-  max-width: 100px;
-  max-height: 88%;
   background-color: white;
+  width: 50%;
+  margin-bottom: 10px;
 }
-.chartCard {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  /* align-items: center;*/
-  flex-direction: column;
-  background-color: white;
-  border-radius: 5px;
-}
-
 .title {
   text-align: start;
   height: 20%; width: 100%;
@@ -20,15 +10,14 @@
 
 .card-info {
   width: 30%;
-  /* text-align: left; */
+  font-size: 8px;
 }
 
 .dashboard {
-  background-color: blue;
-  width: 100%;
+  width: 100%; height: 15%;
   display: flex; 
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   gap: 3px;
   align-items: center;
 }
@@ -36,10 +25,36 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between; 
-  /* width: 100%;
-  width: 100%; */
+  width: 100%;
+  width: 100%;
+  padding-bottom: 2px;
 }
 .tax-table {
   width: 100%;
   width: 100%;
+}
+.tr-row-card {
+  line-height: 10px; 
+  padding: 2px;
+}
+.table-card {
+  width: 100%;
+}
+.taxes {
+  color: rgb(84, 187, 255)
+}
+.naklady {
+  color: #FF4C4C;
+  font-size: 18px;
+  font-weight: bold;
+}
+.trzby {
+  color: #29AB87;
+  font-size: 18px;
+  font-weight: bold;
+}
+.docs {
+  font-size: 8px;
+  font-weight: bold;
+  color:rgba(0, 0, 0, 0.247)
 }

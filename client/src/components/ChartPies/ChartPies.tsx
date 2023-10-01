@@ -2,10 +2,10 @@ import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { useSelector } from 'react-redux';
-import { StateDataInterface, StateInterface } from '../../interfaces';
-import './Pie.css'
+import { StateInterface } from '../../interfaces';
+import './ChartPies.css'
 
-const Pie = () => {
+const ChartPies = () => {
   const costsData = useSelector((state: StateInterface) => state.data.costsGrouped);
   const salesData = useSelector((state: StateInterface) => state.data.salesGrouped);
 
@@ -32,7 +32,7 @@ const Pie = () => {
       enabled: true,
       layout: 'vertical',
       align: 'left',
-      maxHeight: 300
+      maxHeight: 200
     },
     plotOptions: {
       pie: {
@@ -48,7 +48,7 @@ const Pie = () => {
       type: 'pie',
     },
     title: {
-      text: 'Naklady',
+      text: 'Náklady',
       align: 'left',
     },
     series: [
@@ -66,7 +66,7 @@ const Pie = () => {
       enabled: true,
       layout: 'vertical',
       align: 'left',
-      maxHeight: 300
+      maxHeight: 200
     },
     plotOptions: {
       pie: {
@@ -79,13 +79,13 @@ const Pie = () => {
   return (
     <div className="pie-charts">
       <div className="pie-chart">
-        <HighchartsReact highcharts={Highcharts} options={salesOptions} />
+        <HighchartsReact highcharts={Highcharts} options={salesOptions} containerProps={{ className: "pie" }} />
       </div>
       <div className="pie-chart">
-        <HighchartsReact highcharts={Highcharts} options={costsOptions} />
+        <HighchartsReact highcharts={Highcharts} options={costsOptions} containerProps={{ className: "pie" }} />
       </div>
     </div>
   );
 };
 
-export default Pie;
+export default ChartPies;

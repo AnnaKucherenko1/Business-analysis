@@ -1,4 +1,49 @@
-.container {
-  width: 50%;
-  height: 400px;
+.container-wrapper {
+  width: 45%;
+  height: 100%;
+  border-radius: 10px;
+  border: 10px solid white;
+  background-color: white;
+}
+.custom-table {
+  font-size: 10px;
+  background-color: white;
+}
+.table-row {
+  position: relative;
+}
+.button {
+  height: 20px;
+  width: 40px;
+  border-radius: 5px;
+  background-color: black;
+  color:white;
+  margin-left: 3px;
+}
+
+.table-wrapper {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+.tr-row {
+  margin: 0; 
+  padding: 0; 
+  line-height: 4px; 
+  font-weight: 600;
+}
+.table-row-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+}
+.tr-row:hover {
+  cursor: pointer;
+}
+
+.table-row:hover .table-row-actions {
+  display: block;
+  z-index: 199;
+  padding: 0;
 }
