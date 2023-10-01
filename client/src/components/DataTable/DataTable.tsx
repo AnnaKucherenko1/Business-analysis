@@ -51,8 +51,8 @@ const DataTable = () => {
   return (
     <>
       <div className="container-wrapper">
+        <Button variant="outline-dark" type="button" className="btn btn-sm btn-block" onClick={openModal} data-toggle="modal" data-target="#tableModal">Pridať Riadok</Button>
         <table className="table table-borderless custom-table">
-          <Button variant="outline-dark" type="button" className="btn btn-sm btn-block" onClick={openModal} data-toggle="modal" data-target="#tableModal">Pridať Riadok</Button>
           <thead>
             <tr className="tr-row">
               <th scope="col">Mesiac</th>

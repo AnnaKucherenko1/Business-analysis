@@ -12,7 +12,6 @@ const dataSlice = createSlice({
       state.balance = state.balance.filter(item => item.month !== action.payload.month);
     },
     addRowToTable: (state, action) => {
-      console.log(action.payload, 'action pay')
       state.balance.push(action.payload); 
     },
     updateRow: (state, action) => {

@@ -22,7 +22,6 @@ const Analysis = () => {
     const getData = async () => {
       try {
         const response = await axios.get('https://priklad.docflow.ai/');
-        console.log(response)
         dispatch(setData(response.data));
       } catch (error) {
         console.error('Error fetching data:', error);
