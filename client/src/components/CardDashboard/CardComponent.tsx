@@ -4,6 +4,7 @@ import HighchartsReact from 'highcharts-react-official';
 import Card from 'react-bootstrap/Card';
 import './CardDashboard.css';
 import { Container } from 'react-bootstrap';
+import { COLOR_GREEN_HEX, COLOR_RED_HEX } from '../../common/constants';
 
 interface CardComponentProps {
   data: {
@@ -51,18 +52,18 @@ const CardComponent = ({
         name: 'Total',
         data: data.total.map((value: number) => ({
           y: value,
-          color: value < 0 ? '#FF4C4C' : '#29ab87',
+          color: value < 0 ? COLOR_GREEN_HEX : COLOR_RED_HEX,
         })),
       },
       {
         name: 'Costs',
         data: data.costs,
-        color: '#FF4C4C',
+        color: COLOR_GREEN_HEX,
       },
       {
         name: 'Sales',
         data: data.sales,
-        color: '#29ab87',
+        color: COLOR_RED_HEX,
       },
     ],
   };

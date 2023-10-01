@@ -5,7 +5,7 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { BalanceInterface, StateInterface } from '../../interfaces';
 import { formatDatesToMonth } from '../../common/utils';
-import { allMonths } from '../../common/constants';
+import { ALL_MONTHS, COLOR_GREEN_HEX, COLOR_RED_HEX, MONTHLY_CHART_TICK_INTERVAL } from '../../common/constants';
 
 const MonthlyChart = () => {
   const balanceData = useSelector((state: StateInterface) => state.data.balance);
@@ -27,7 +27,7 @@ const MonthlyChart = () => {
     },
     xAxis: {
       categories: formatDatesToMonth(monthlyCostsSales.months).map((month, index) => (index % 3 === 0 ? month : '')),
-      gridLineWidth: allMonths.map((month, index) => (index % 3 === 0 ? 1 : 0)),
+      gridLineWidth: ALL_MONTHS.map((month, index) => (index % 3 === 0 ? 1 : 0)),
       labels: {
         rotation: 0,
         style: {
@@ -39,20 +39,20 @@ const MonthlyChart = () => {
       title: {
         text: null,
       },
-      tickInterval: 5000,
+      tickInterval: MONTHLY_CHART_TICK_INTERVAL,
     },
     series: [
       {
         name: 'Náklady',
         type: 'areaspline',
         data: monthlyCostsSales.costs,
-        color: '#FF4C4C',
+        color: COLOR_RED_HEX,
       },
       {
         name: 'Tržby',
         type: 'areaspline',
         data: monthlyCostsSales.sales,
-        color: '#29AB87',
+        color: COLOR_GREEN_HEX,
       },
     ],
   };

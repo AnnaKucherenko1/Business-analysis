@@ -6,7 +6,7 @@ import { addRowToTable } from '../../redux/dataSlice';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { Form, InputGroup } from 'react-bootstrap';
-import { taxPercentage } from '../../common/constants';
+import { TAX_PERCENTAGE } from '../../common/constants';
 interface AddRowModalProps {
   show: boolean;
   onHide: () => void;
@@ -23,8 +23,8 @@ const AddRowModal = ({ show, onHide }: AddRowModalProps) => {
     if (selectedDate) {
       formattedDate = selectedDate.toISOString();
     }
-    const costsTax = costs * taxPercentage;
-    const salesTax = sales * taxPercentage;
+    const costsTax = costs * TAX_PERCENTAGE;
+    const salesTax = sales * TAX_PERCENTAGE;
     dispatch(
       addRowToTable({
         salesAmount: sales,
@@ -55,7 +55,7 @@ const AddRowModal = ({ show, onHide }: AddRowModalProps) => {
               onChange={(e) => setSales(parseFloat(e.target.value))}
             />
             <InputGroup.Text id='basic-addon3'>
-              20% daň: {(sales * taxPercentage).toFixed(0)}
+              20% daň: {(sales * TAX_PERCENTAGE).toFixed(0)}
             </InputGroup.Text>
           </InputGroup>
         </Form.Group>
@@ -71,7 +71,7 @@ const AddRowModal = ({ show, onHide }: AddRowModalProps) => {
               onChange={(e) => setCosts(parseFloat(e.target.value))}
             />
             <InputGroup.Text id='basic-addon3'>
-              20% daň: {(costs * taxPercentage).toFixed(0)}
+              20% daň: {(costs * TAX_PERCENTAGE).toFixed(0)}
             </InputGroup.Text>
           </InputGroup>
         </Form.Group>

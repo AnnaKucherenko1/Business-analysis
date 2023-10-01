@@ -9,7 +9,7 @@ import ChartPies from '../components/ChartPies/ChartPies';
 import { BalanceInterface, StateInterface } from '../interfaces';
 import { formatDate } from '../common/utils';
 import { AiOutlinePieChart, AiTwotoneCalendar } from 'react-icons/ai';
-import { getData } from '../servises';
+import { getData } from '../services';
 
 const Analysis = () => {
   const dispatch = useDispatch();

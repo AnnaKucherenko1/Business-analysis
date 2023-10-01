@@ -11,7 +11,7 @@ import { deleteItem, updateRow } from '../../redux/dataSlice';
 import AddRowModal from '../Modal/AddRowModal';
 import EditRowModal from '../Modal/EditRowModal';
 import { Button } from 'react-bootstrap';
-import { initialValueRedux, lastElevenElements } from '../../common/constants';
+import { COLOR_GREEN_HEX, COLOR_RED_HEX, INITIAL_VALUE_REDUX, LAST_ELEVEN_ELEMENTS } from '../../common/constants';
 
 const DataTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,12 +32,12 @@ const DataTable = () => {
     }));
   }, [balanceData]);
 
-  const last11TableData = tableData.slice(lastElevenElements);
+  const last11TableData = tableData.slice(LAST_ELEVEN_ELEMENTS);
 
   const totalSales = useMemo(() => {
     return tableData.reduce(
       (total: number, item: BalanceInterface) => total + item.salesAmount,
-      initialValueRedux
+      INITIAL_VALUE_REDUX
     );
   }, [tableData]);
 
@@ -45,7 +45,7 @@ const DataTable = () => {
     return formatNumber(
       tableData.reduce(
         (total: number, item: BalanceInterface) => total + item.costsAmount,
-        initialValueRedux
+        INITIAL_VALUE_REDUX
       )
     );
   }, [tableData]);
@@ -54,7 +54,7 @@ const DataTable = () => {
     return formatNumber(
       tableData.reduce(
         (total: any, item: any) => total + (item.salesAmount - item.costsAmount),
-        initialValueRedux
+        INITIAL_VALUE_REDUX
       )
     );
   }, [tableData]);
@@ -101,10 +101,10 @@ const DataTable = () => {
             {last11TableData.map((item: BalanceItem) => (
               <tr key={item.month} className='table-row tr-row'>
                 <td>{formatDate(item.month)}</td>
-                <td style={{ color: '#29ab87' }}>
+                <td style={{ color: COLOR_RED_HEX }}>
                   {item.salesAmountFormatted}
                 </td>
-                <td style={{ color: '#FF4C4C' }}>
+                <td style={{ color: COLOR_GREEN_HEX }}>
                   {item.costsAmountFormatted}
                 </td>
                 <td>{item.differenceFormatted}</td>
@@ -128,8 +128,8 @@ const DataTable = () => {
           <tfoot>
             <tr className='tr-row'>
               <td>SPOLU</td>
-              <td style={{ color: '#29ab87' }}>{totalSales}</td>
-              <td style={{ color: '#FF4C4C' }}>{totalCosts}</td>
+              <td style={{ color: COLOR_RED_HEX }}>{totalSales}</td>
+              <td style={{ color: COLOR_GREEN_HEX }}>{totalCosts}</td>
               <td>{totalDifference}</td>
             </tr>
           </tfoot>

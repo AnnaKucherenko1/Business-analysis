@@ -5,7 +5,7 @@ import './CardDashboard.css';
 import { formatDate } from '../../common/utils';
 import CardComponent from './CardComponent';
 import { Card, Container } from 'react-bootstrap';
-import { initialValueRedux } from '../../common/constants';
+import { INITIAL_VALUE_REDUX } from '../../common/constants';
 
 const CardDashboard = () => {
   const data = useSelector((state: StateInterface) => state.data);
@@ -16,11 +16,11 @@ const CardDashboard = () => {
       totalDocs: data.costsTotalDocs + data.salesTotalDocs,
       costsTotal: data.balance.reduce(
         (total, item) => total + item.costsAmount,
-        initialValueRedux
+        INITIAL_VALUE_REDUX
       ),
       salesTotal: data.balance.reduce(
         (total, item) => total + item.salesAmount,
-        initialValueRedux
+        INITIAL_VALUE_REDUX
       ),
       months: data.balance.map((item: { month: string }) => item.month),
       costs: data.balance.map(
