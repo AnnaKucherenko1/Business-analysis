@@ -2,9 +2,10 @@ import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { StateInterface } from '../../interfaces';
 import './CardDashboard.css';
-import { formatDate } from '../../formatDate';
+import { formatDate } from '../../common/utils';
 import CardComponent from './CardComponent';
-import { Card } from 'react-bootstrap';
+import { Card, Container } from 'react-bootstrap';
+import { initialValueRedux } from '../../common/constants';
 
 const CardDashboard = () => {
   const data = useSelector((state: StateInterface) => state.data);
@@ -13,15 +14,28 @@ const CardDashboard = () => {
       costsTotalDocs: data.costsTotalDocs,
       salesTotalDocs: data.salesTotalDocs,
       totalDocs: data.costsTotalDocs + data.salesTotalDocs,
-      costsTotal: data.costsTotal,
-      salesTotal: data.salesTotal,
-      totalSum: data.salesTotal - data.costsTotal,
+      costsTotal: data.balance.reduce(
+        (total, item) => total + item.costsAmount,
+        initialValueRedux
+      ),
+      salesTotal: data.balance.reduce(
+        (total, item) => total + item.salesAmount,
+        initialValueRedux
+      ),
       months: data.balance.map((item: { month: string }) => item.month),
-      costs: data.balance.map((item: { costsAmount: number }) => item.costsAmount),
-      sales: data.balance.map((item: { salesAmount: number }) => item.salesAmount),
+      costs: data.balance.map(
+        (item: { costsAmount: number }) => item.costsAmount
+      ),
+      sales: data.balance.map(
+        (item: { salesAmount: number }) => item.salesAmount
+      ),
       lastItems: data.balance.slice(-3),
     };
   }, [data]);
+
+  const totalSum = useMemo(() => {
+    return dataRollup.salesTotal - dataRollup.costsTotal;
+  }, [dataRollup]);
 
   const costsData = {
     months: dataRollup.months,
@@ -34,7 +48,8 @@ const CardDashboard = () => {
     sales: dataRollup.sales,
     total: [],
   };
-  const bilancia = {
+
+  const balance = {
     months: dataRollup.months,
     total: dataRollup.sales.map(
       (sale, index) => sale - dataRollup.costs[index]
@@ -44,12 +59,12 @@ const CardDashboard = () => {
   return (
     <div className='dashboard'>
       <CardComponent
-        data={bilancia}
+        data={balance}
         totalDocs={dataRollup.totalDocs}
-        sum={(Math.floor(dataRollup.totalSum) / 1000).toFixed(1)}
-        className={dataRollup.totalSum > 0 ? 'trzby' : 'naklady'}
+        sum={(Math.floor(totalSum) / 1000).toFixed(1)}
+        className={totalSum > 0 ? 'trzby' : 'naklady'}
         title={
-          dataRollup.totalSum > 0 ? 'Bilancia (zisk)' : 'Bilancia (strata)'
+          totalSum > 0 ? 'Bilancia (zisk)' : 'Bilancia (strata)'
         }
       />
       <CardComponent
@@ -68,8 +83,8 @@ const CardDashboard = () => {
       />
       <Card style={{ width: '22.5%', height: '100%' }}>
         <Card.Body>
-          <Card.Title>  Prehľad DPH </Card.Title>
-          <Card.Text>
+          <Card.Title className='title-left'> Prehľad DPH </Card.Title>
+          <Container>
             <div className='tax-table'>
               <table
                 className='table-card'
@@ -85,13 +100,15 @@ const CardDashboard = () => {
                   {dataRollup.lastItems.map((item) => (
                     <tr key={item.month} className='tr-row-card'>
                       <td>{formatDate(item.month)}</td>
-                      <td className='taxes'>{(item.salesTax - item.costsTax).toFixed(2)}€</td>
+                      <td className='taxes'>
+                        {(item.salesTax - item.costsTax).toFixed(2)}€
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-          </Card.Text>
+          </Container>
         </Card.Body>
       </Card>
     </div>

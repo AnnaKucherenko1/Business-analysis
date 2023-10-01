@@ -12,7 +12,9 @@
   width: 30%;
   font-size: 8px;
 }
-
+.title-left {
+  text-align: left;
+}
 .dashboard {
   width: 100%; height: 15%;
   display: flex; 

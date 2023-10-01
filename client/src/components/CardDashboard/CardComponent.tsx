@@ -3,6 +3,7 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import Card from 'react-bootstrap/Card';
 import './CardDashboard.css';
+import { Container } from 'react-bootstrap';
 
 interface CardComponentProps {
   data: {
@@ -16,7 +17,6 @@ interface CardComponentProps {
   title: string;
   className: string;
 }
-
 const CardComponent = ({
   data,
   totalDocs,
@@ -70,8 +70,8 @@ const CardComponent = ({
   return (
     <Card style={{ width: '22.5%', height: '100%' }}>
       <Card.Body>
-        <Card.Title className='ml-0'> {title} </Card.Title>
-        <Card.Text>
+        <Card.Title className='title-left'> {title} </Card.Title>
+        <Container>
           <div className='middle-card'>
             <div className='card-info'>
               <p className={className}> {sum}K</p>
@@ -83,7 +83,7 @@ const CardComponent = ({
               options={chartOptions}
             />
           </div>
-        </Card.Text>
+        </Container>
       </Card.Body>
     </Card>
   );

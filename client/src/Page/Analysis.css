@@ -7,6 +7,7 @@
   width: 70%;
   height: 100vh;
   background-color: rgb(240, 240, 240);
+  gap: 1%
 }
 
 .charts {
@@ -16,7 +17,7 @@
   width: 100%;
   margin-top: 5px;
   margin-bottom: 5px;
-  gap:1%;
+  gap:2%;
 }
 
 .pageTitle {
@@ -35,5 +36,5 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 2%;
+  margin-top: 1%;
 }

@@ -9,7 +9,12 @@ interface EditRowModalProps {
   selectedRow?: any;
   onSave: (data: FormData) => void;
 }
-const EditRowModal = ({ show, onHide, selectedRow, onSave }: EditRowModalProps) => {
+const EditRowModal = ({
+  show,
+  onHide,
+  selectedRow,
+  onSave,
+}: EditRowModalProps) => {
   const [editedRow, setEditedRow] = useState({ ...selectedRow });
 
   const handleSaveClick = () => {

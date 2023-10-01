@@ -54,5 +54,10 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/react-datepicker": "^4.15.1"
+  }, 
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   }
 }

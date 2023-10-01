@@ -1,40 +1,20 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import "./MonthlyChart.css"
 import { useSelector } from 'react-redux';
 import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official'; // Use 'highcharts-react-official' for Highcharts 9+
+import HighchartsReact from 'highcharts-react-official';
 import { BalanceInterface, StateInterface } from '../../interfaces';
+import { formatDatesToMonth } from '../../common/utils';
 
 const MonthlyChart = () => {
   const balanceData = useSelector((state: StateInterface) => state.data.balance);
-  const months = balanceData.map((item: BalanceInterface) => item.month);
-  const costs = balanceData.map((item: BalanceInterface) => item.costsAmount);
-  const sales = balanceData.map((item: BalanceInterface) => item.salesAmount);
-
-  const formatDate = (inputDates: string[]) => {
-    const months = [
-      "január",
-      "február",
-      "marec",
-      "apríl",
-      "máj",
-      "jún",
-      "júl",
-      "august",
-      "september",
-      "október",
-      "november",
-      "december",
-    ];
-    const formattedDates = inputDates.map((inputDate) => {
-      const parts = inputDate.split("T")[0].split("-");
-      const year = parts[0].slice(-2);
-      const month = parseInt(parts[1], 10) - 1;
-      return `${months[month]} ${year}`;
-    });
-
-    return formattedDates;
-  };
+  const monthlyCostsSales = useMemo(() => {
+    return {
+      months: balanceData.map((item: BalanceInterface) => item.month),
+      costs: balanceData.map((item: BalanceInterface) => item.costsAmount),
+      sales: balanceData.map((item: BalanceInterface) => item.salesAmount),
+    }
+  }, [balanceData]);
 
   const config = {
     title: {
@@ -42,7 +22,7 @@ const MonthlyChart = () => {
       align: 'left',
     },
     xAxis: {
-      categories: formatDate(months).map((month, index) => (index % 3 === 0 ? month : '')),
+      categories: formatDatesToMonth(monthlyCostsSales.months).map((month, index) => (index % 3 === 0 ? month : '')),
       labels: {
         rotation: 0,
         style: {
@@ -59,13 +39,13 @@ const MonthlyChart = () => {
       {
         name: 'Náklady',
         type: 'areaspline',
-        data: costs,
+        data: monthlyCostsSales.costs,
         color: '#FF4C4C',
       },
       {
         name: 'Tržby',
         type: 'areaspline',
-        data: sales,
+        data: monthlyCostsSales.sales,
         color: '#29AB87',
       },
     ],
