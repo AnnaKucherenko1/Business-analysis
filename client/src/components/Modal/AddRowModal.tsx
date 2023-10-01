@@ -55,7 +55,7 @@ const AddRowModal = ({ show, onHide }: AddRowModalProps) => {
               onChange={(e) => setSales(parseFloat(e.target.value))}
             />
             <InputGroup.Text id='basic-addon3'>
-              20% daň: {(sales * TAX_PERCENTAGE).toFixed(0)}
+              20% daň: {(sales * TAX_PERCENTAGE).toFixed(0)} €
             </InputGroup.Text>
           </InputGroup>
         </Form.Group>
@@ -71,7 +71,7 @@ const AddRowModal = ({ show, onHide }: AddRowModalProps) => {
               onChange={(e) => setCosts(parseFloat(e.target.value))}
             />
             <InputGroup.Text id='basic-addon3'>
-              20% daň: {(costs * TAX_PERCENTAGE).toFixed(0)}
+              20% daň: {(costs * TAX_PERCENTAGE).toFixed(0)} €
             </InputGroup.Text>
           </InputGroup>
         </Form.Group>

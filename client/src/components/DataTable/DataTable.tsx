@@ -35,10 +35,10 @@ const DataTable = () => {
   const last11TableData = tableData.slice(LAST_ELEVEN_ELEMENTS);
 
   const totalSales = useMemo(() => {
-    return tableData.reduce(
+    return formatNumber(tableData.reduce(
       (total: number, item: BalanceInterface) => total + item.salesAmount,
       INITIAL_VALUE_REDUX
-    );
+    ));
   }, [tableData]);
 
   const totalCosts = useMemo(() => {
