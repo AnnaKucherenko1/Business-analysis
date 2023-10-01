@@ -12,10 +12,8 @@
 .charts {
   display: flex;
   flex-direction: row;
-  /* align-content: space-between; */
   height: 40%;
   width: 100%;
-  /* background-color: red; */
   margin-top: 5px;
   margin-bottom: 5px;
   gap:1%;
@@ -23,5 +21,19 @@
 
 .pageTitle {
   color: rgb(105, 105, 130);
+}
+.obdobie {
+  background-color: rgba(0, 0, 0, 0.699);
+  border-radius: 50px;
+  padding: 10px;
+  font-size: 10px;
+  color: white
+  
+}
+.header-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin-top: 2%;
 }

@@ -5,11 +5,18 @@ import axios from 'axios';
 import MonthlyChart from '../components/MonthlyChart/MonthlyChart';
 import DataTable from '../components/DataTable/DataTable';
 import './Analysis.css'
-import Pie from '../components/Pie/Pie';
-import Dashboard from '../components/CardDashboard/Dashboard';
+import CardDashboard from '../components/CardDashboard/CardDashboard';
+import ChartPies from '../components/ChartPies/ChartPies';
+import { BalanceInterface, StateInterface } from '../interfaces';
+import { formatDate } from '../formatDate';
+import { AiOutlinePieChart, AiTwotoneCalendar } from 'react-icons/ai';
 
 const Analysis = () => {
   const dispatch = useDispatch();
+  const balanceData = useSelector((state: StateInterface) => state.data.balance);
+  const months = balanceData.map((item: BalanceInterface) => item.month);
+  const dateFrom = formatDate(months[0])
+  const dateTo = formatDate(months[months.length - 1])
 
   useEffect(() => {
     const getData = async () => {
@@ -27,13 +34,19 @@ const Analysis = () => {
 
   return (
     <div className='wrapper'>
-      <h5 className='pageTitle'>Biznis analyza</h5>
-      <Dashboard />
+      <div className='header-wrapper'>
+        <h5 className='pageTitle'>
+          <AiOutlinePieChart />Biznis analyza</h5>
+        <h5 className='obdobie'>
+          <AiTwotoneCalendar /> Obdobie ({dateFrom}-{dateTo})
+        </h5>
+      </div>
+      <CardDashboard />
       <div className='charts'>
         <MonthlyChart />
         <DataTable />
       </div>
-      <Pie />
+      <ChartPies />
     </div>
   );
 };

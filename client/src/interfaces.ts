@@ -10,14 +10,26 @@ export interface BalanceInterface {
   salesTax: number;
 }
 export interface StateDataInterface {
-  balance: any[]
-  costsExpired: []
-  costsGrouped: {}
-  costsTotal: number
-  costsTotalDocs: number
-  from: string
-  salesGrouped: {}
-  salesTotal: number
-  salesTotalDocs: number
-  to: string
+  balance: BalanceInterface[];
+  costsExpired: [];
+  costsGrouped: {};
+  costsTotal: number;
+  costsTotalDocs: number;
+  from: string;
+  salesGrouped: {};
+  salesTotal: number;
+  salesTotalDocs: number;
+  to: string;
+}
+
+export interface BalanceItem {
+  costsAmount: number;
+  costsAmountFormatted: string;
+  costsTax: number;
+  difference: number;
+  differenceFormatted: string;
+  month: string;
+  salesAmount: number;
+  salesAmountFormatted: string;
+  salesTax: number;
 }

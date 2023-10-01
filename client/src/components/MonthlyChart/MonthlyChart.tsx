@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import "./MonthlyChart.css"
 import { useSelector } from 'react-redux';
 import Highcharts from 'highcharts';
@@ -46,33 +46,34 @@ const MonthlyChart = () => {
       labels: {
         rotation: 0,
         style: {
-          fontSize: '6px',
+          fontSize: '7px',
         },
-        useHTML: true,
       }
     },
     yAxis: {
       title: {
-        text: 'Amount',
+        text: null,
       },
     },
     series: [
       {
-        name: 'Costs',
+        name: 'Náklady',
         type: 'areaspline',
         data: costs,
+        color: '#FF4C4C',
       },
       {
-        name: 'Profit',
+        name: 'Tržby',
         type: 'areaspline',
         data: sales,
+        color: '#29AB87',
       },
     ],
   };
 
   return (
     <div className='monthly-container' >
-      <HighchartsReact highcharts={Highcharts} containerProps={{ className: "test" }} options={config} />
+      <HighchartsReact highcharts={Highcharts} containerProps={{ className: "monthly-chart" }} options={config} />
     </div >
   )
 };

@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { StateInterface } from '../../interfaces';
-import Card from './Card';
 import './CardDashboard.css';
 import { formatDate } from '../../formatDate';
+import CardComponent from './CardComponent';
+import { Card } from 'react-bootstrap';
 
-const Dashboard = () => {
+const CardDashboard = () => {
   const data = useSelector((state: StateInterface) => state.data);
   const dataRollup = useMemo(() => {
     return {
@@ -42,54 +43,59 @@ const Dashboard = () => {
 
   return (
     <div className='dashboard'>
-      <Card
+      <CardComponent
         data={bilancia}
         totalDocs={dataRollup.totalDocs}
         sum={(Math.floor(dataRollup.totalSum) / 1000).toFixed(1)}
+        className={dataRollup.totalSum > 0 ? 'trzby' : 'naklady'}
         title={
           dataRollup.totalSum > 0 ? 'Bilancia (zisk)' : 'Bilancia (strata)'
         }
       />
-      <Card
+      <CardComponent
         data={salesData}
         totalDocs={dataRollup.salesTotalDocs}
         sum={Math.floor(dataRollup.salesTotal / 1000)}
         title={'Tržby'}
+        className={'trzby'}
       />
-      <Card
+      <CardComponent
         data={costsData}
         totalDocs={dataRollup.costsTotalDocs}
         sum={Math.floor(dataRollup.costsTotal / 1000)}
-        title={'Naklady'}
+        title={'Náklady'}
+        className={'naklady'}
       />
-      <div className='chartCard'>
-        <div className='title'>Prehľad DPH</div>
-        <div className='middle-card'>
-          <div className='tax-table'>
-            <table
-              className='table-sm table-borderless p-0'
-              style={{ fontSize: '12px', borderSpacing: '0' }}
-            >
-              <thead>
-                <tr>
-                  <th className='px-4'>Mesiac</th>
-                  <th className='px-4'>Suma</th>
-                </tr>
-              </thead>
-              <tbody>
-                {dataRollup.lastItems.map((item) => (
-                  <tr key={item.month}>
-                    <td>{formatDate(item.month)}</td>
-                    <td>{(item.salesTax - item.costsTax).toFixed(2)}</td>
+      <Card style={{ width: '22.5%', height: '100%' }}>
+        <Card.Body>
+          <Card.Title>  Prehľad DPH </Card.Title>
+          <Card.Text>
+            <div className='tax-table'>
+              <table
+                className='table-card'
+                style={{ fontSize: '12px', borderSpacing: '0' }}
+              >
+                <thead>
+                  <tr>
+                    <th>Mesiac</th>
+                    <th>Suma</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+                </thead>
+                <tbody>
+                  {dataRollup.lastItems.map((item) => (
+                    <tr key={item.month} className='tr-row-card'>
+                      <td>{formatDate(item.month)}</td>
+                      <td className='taxes'>{(item.salesTax - item.costsTax).toFixed(2)}€</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Card.Text>
+        </Card.Body>
+      </Card>
     </div>
   );
 };
 
-export default Dashboard;
+export default CardDashboard;
