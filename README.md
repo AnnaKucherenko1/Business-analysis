@@ -1,5 +1,5 @@
 # Biznis analýza
-## Responsive Business Analysis Single-Page Application
+Responsive business analysis SPA
 ## Technology Stack:
 ReactJS, Redux, Highcharts, Axios, Bootstrap with Vanilla CSS, Jest for testing
 ## Installation
