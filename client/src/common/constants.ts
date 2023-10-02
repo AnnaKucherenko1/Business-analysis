@@ -1,4 +1,4 @@
-export const INITIAL_VALUE_REDUX = 0;
+export const INITIAL_VALUE_REDUCE = 0;
 export const LAST_ELEVEN_ELEMENTS = -11;
 export const TAX_PERCENTAGE = 0.2;
 export const COLOR_RED_HEX = '#29ab87';

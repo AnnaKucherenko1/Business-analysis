@@ -11,7 +11,7 @@ import { deleteItem, updateRow } from '../../redux/dataSlice';
 import AddRowModal from '../Modal/AddRowModal';
 import EditRowModal from '../Modal/EditRowModal';
 import { Button } from 'react-bootstrap';
-import { COLOR_GREEN_HEX, COLOR_RED_HEX, INITIAL_VALUE_REDUX, LAST_ELEVEN_ELEMENTS } from '../../common/constants';
+import { COLOR_GREEN_HEX, COLOR_RED_HEX, INITIAL_VALUE_REDUCE, LAST_ELEVEN_ELEMENTS } from '../../common/constants';
 
 const DataTable = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,7 +37,7 @@ const DataTable = () => {
   const totalSales = useMemo(() => {
     return formatNumber(tableData.reduce(
       (total: number, item: BalanceInterface) => total + item.salesAmount,
-      INITIAL_VALUE_REDUX
+      INITIAL_VALUE_REDUCE
     ));
   }, [tableData]);
 
@@ -45,7 +45,7 @@ const DataTable = () => {
     return formatNumber(
       tableData.reduce(
         (total: number, item: BalanceInterface) => total + item.costsAmount,
-        INITIAL_VALUE_REDUX
+        INITIAL_VALUE_REDUCE
       )
     );
   }, [tableData]);
@@ -54,7 +54,7 @@ const DataTable = () => {
     return formatNumber(
       tableData.reduce(
         (total: any, item: any) => total + (item.salesAmount - item.costsAmount),
-        INITIAL_VALUE_REDUX
+        INITIAL_VALUE_REDUCE
       )
     );
   }, [tableData]);
